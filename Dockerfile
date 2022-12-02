@@ -31,16 +31,12 @@ RUN apk update
 RUN apk add busybox-extras
 RUN apk add curl
 
-RUN addgroup -S appgroup && adduser -S appuser -G appgroup
-
-USER appuser
-
-WORKDIR /home/appuser
+WORKDIR /usr/src/app
 
 COPY --from=builder /usr/src/app/node_modules ./node_modules
 
 COPY --from=builder /usr/src/app/dist ./dist
 
-RUN echo $(ls -1 -la /home/appuser)
+RUN echo $(ls -1 -la /usr/src/app)
 
 CMD ["node", "dist/main"]
