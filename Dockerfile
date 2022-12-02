@@ -26,6 +26,7 @@ RUN npm run build
 RUN echo $(ls -1 /usr/src/app/dist)
 
 FROM node:16.17.0-alpine As hml
+LABEL author="Marcelo Ribeiro da Silva"
 
 RUN apk update
 RUN apk add busybox-extras
